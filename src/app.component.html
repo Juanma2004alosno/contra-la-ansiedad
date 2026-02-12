@@ -1,0 +1,141 @@
+<div class="h-screen w-full flex justify-center items-center p-0 md:p-6">
+  
+  <!-- App Container (Mobile Mockup on Desktop, Full on Mobile) -->
+  <div class="w-full h-full md:max-w-[400px] md:h-[850px] bg-white/80 backdrop-blur-xl md:rounded-[2.5rem] shadow-2xl relative overflow-hidden flex flex-col border border-white/50 ring-1 ring-slate-900/5">
+    
+    <!-- Background Decor Blurs -->
+    <div class="absolute top-[-20%] left-[-20%] w-[80%] h-[50%] bg-blue-200/40 rounded-full blur-[80px] pointer-events-none"></div>
+    <div class="absolute bottom-[-10%] right-[-10%] w-[60%] h-[40%] bg-purple-200/40 rounded-full blur-[80px] pointer-events-none"></div>
+
+    <!-- Header Area -->
+    <header class="relative z-10 px-6 pt-8 pb-4 flex justify-between items-center shrink-0">
+      <div>
+        <h1 class="text-2xl font-bold text-slate-800 tracking-tight flex items-center gap-2">
+          @if (currentView() !== 'dashboard') {
+            <button (click)="setView('dashboard')" class="mr-1 text-slate-400 hover:text-slate-800 transition-colors p-1 -ml-2 rounded-full hover:bg-black/5">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+          }
+          <span class="bg-clip-text text-transparent bg-gradient-to-r from-slate-700 to-slate-900">Calma</span>
+        </h1>
+        <p class="text-xs font-medium text-slate-500 ml-1">Bienestar emocional</p>
+      </div>
+      
+      <!-- User Avatar / Profile Placeholder -->
+      <div class="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-100 to-white border border-white shadow-sm flex items-center justify-center text-lg">
+        🌿
+      </div>
+    </header>
+
+    <!-- Main Scrollable Content -->
+    <main class="flex-1 relative z-10 overflow-hidden flex flex-col">
+      
+      <!-- DASHBOARD -->
+      @if (currentView() === 'dashboard') {
+        <div class="h-full overflow-y-auto px-6 pb-6 hide-scrollbar">
+          
+          <!-- Daily Affirmation Card -->
+          <div class="mt-2 mb-8 relative group">
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-3xl blur opacity-20 group-hover:opacity-30 transition-opacity"></div>
+            <div class="relative bg-white/60 backdrop-blur-md border border-white rounded-3xl p-6 shadow-sm">
+              <div class="flex flex-col gap-3">
+                <div class="flex items-center gap-2 text-indigo-600 text-xs font-bold uppercase tracking-wider">
+                  <span class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
+                  Mensaje del día
+                </div>
+                <p class="text-lg font-serif text-slate-800 leading-relaxed">
+                  "{{ dailyAffirmation() }}"
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <h2 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4 px-1">Herramientas</h2>
+
+          <!-- Grid Menu -->
+          <div class="grid grid-cols-2 gap-4">
+            
+            <!-- Chat Card -->
+            <button (click)="setView('chat')" class="bg-white p-5 rounded-3xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07)] hover:shadow-[0_8px_25px_-5px_rgba(0,0,0,0.1)] transition-all hover:-translate-y-1 text-left border border-slate-50 group relative overflow-hidden">
+              <div class="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-full -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
+              <div class="w-12 h-12 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center mb-4 text-2xl relative z-10">
+                💬
+              </div>
+              <h3 class="font-bold text-slate-800 relative z-10">Chat IA</h3>
+              <p class="text-xs text-slate-500 mt-1 relative z-10">Desahogo seguro</p>
+            </button>
+
+            <!-- Breathing Card -->
+            <button (click)="setView('breathing')" class="bg-white p-5 rounded-3xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07)] hover:shadow-[0_8px_25px_-5px_rgba(0,0,0,0.1)] transition-all hover:-translate-y-1 text-left border border-slate-50 group relative overflow-hidden">
+               <div class="absolute top-0 right-0 w-24 h-24 bg-teal-50 rounded-full -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
+               <div class="w-12 h-12 rounded-2xl bg-teal-100 text-teal-600 flex items-center justify-center mb-4 text-2xl relative z-10">
+                🌬️
+              </div>
+              <h3 class="font-bold text-slate-800 relative z-10">Respirar</h3>
+              <p class="text-xs text-slate-500 mt-1 relative z-10">Calma tu mente</p>
+            </button>
+
+            <!-- Journal Card -->
+            <button (click)="setView('journal')" class="bg-white p-5 rounded-3xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07)] hover:shadow-[0_8px_25px_-5px_rgba(0,0,0,0.1)] transition-all hover:-translate-y-1 text-left border border-slate-50 group relative overflow-hidden">
+               <div class="absolute top-0 right-0 w-24 h-24 bg-amber-50 rounded-full -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
+               <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center mb-4 text-2xl relative z-10">
+                ✍️
+              </div>
+              <h3 class="font-bold text-slate-800 relative z-10">Diario</h3>
+              <p class="text-xs text-slate-500 mt-1 relative z-10">Tus memorias</p>
+            </button>
+
+            <!-- Progress Card -->
+            <button (click)="setView('progress')" class="bg-white p-5 rounded-3xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07)] hover:shadow-[0_8px_25px_-5px_rgba(0,0,0,0.1)] transition-all hover:-translate-y-1 text-left border border-slate-50 group relative overflow-hidden">
+               <div class="absolute top-0 right-0 w-24 h-24 bg-emerald-50 rounded-full -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
+               <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center mb-4 text-2xl relative z-10">
+                📊
+              </div>
+              <h3 class="font-bold text-slate-800 relative z-10">Progreso</h3>
+              <p class="text-xs text-slate-500 mt-1 relative z-10">Tus estadísticas</p>
+            </button>
+
+            <!-- Resources (Full width) -->
+            <button (click)="setView('resources')" class="col-span-2 bg-gradient-to-br from-white to-rose-50 p-6 rounded-3xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07)] hover:shadow-[0_8px_25px_-5px_rgba(0,0,0,0.1)] transition-all hover:-translate-y-1 text-left border border-white flex items-center justify-between group">
+              <div>
+                <h3 class="font-bold text-rose-900 text-lg">Ayuda Profesional</h3>
+                <p class="text-sm text-rose-600/80 mt-1">Líneas de crisis y estrategias</p>
+              </div>
+              <div class="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center text-rose-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+            </button>
+
+          </div>
+        </div>
+      }
+
+      <!-- FEATURE VIEWS CONTAINER -->
+      @if (currentView() !== 'dashboard') {
+        <div class="flex-1 bg-white/50 backdrop-blur-sm rounded-t-[2.5rem] overflow-hidden flex flex-col shadow-inner border-t border-white/60 animate-in slide-in-from-bottom-10 fade-in duration-300">
+          
+          @if (currentView() === 'chat') {
+            <app-chat></app-chat>
+          }
+          @if (currentView() === 'breathing') {
+            <app-breathing></app-breathing>
+          }
+          @if (currentView() === 'journal') {
+            <app-journal></app-journal>
+          }
+          @if (currentView() === 'progress') {
+            <app-progress></app-progress>
+          }
+          @if (currentView() === 'resources') {
+            <app-resources></app-resources>
+          }
+
+        </div>
+      }
+    </main>
+  </div>
+</div>
